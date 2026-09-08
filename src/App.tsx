@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertCircle, RefreshCw } from 'lucide-react'
-import type { AttendanceRecord, AttendanceStatus, Match, Page, Player } from './types'
+import type { AttendanceRecord, AttendanceStatus, Match, Page, Player, PlayerRole } from './types'
 import { seedMatches, seedPlayers } from './data/seed'
 import { getNextMatch } from './lib/dates'
 import { normalizedNameKey, normalizeName } from './lib/players'
@@ -77,14 +77,14 @@ export default function App() {
   const nextMatch = useMemo(() => getNextMatch(matches), [matches])
   const selectedMatch = selectedMatchId ? matches.find((match) => match.id === selectedMatchId) : undefined
 
-  const choosePlayer = async (name: string, playerId?: string) => {
+  const choosePlayer = async (name: string, playerId?: string, role: PlayerRole = 'player') => {
     const normalized = normalizeName(name)
     let selected = playerId ? players.find((item) => item.id === playerId) : players.find((item) => normalizedNameKey(item.name) === normalizedNameKey(normalized))
     if (!selected) {
       try {
         selected = isSupabaseConfigured
-          ? await createRemotePlayer(normalized)
-          : { id: `local-${Date.now()}`, name: normalized, isRegular: false }
+          ? await createRemotePlayer(normalized, role)
+          : { id: `local-${Date.now()}`, name: normalized, isRegular: false, role }
         setPlayers((current) => [...current, selected as Player])
       } catch {
         setToast('No se ha podido guardar ese jugador. Inténtalo de nuevo.')

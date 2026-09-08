@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import type { AttendanceRecord, AttendanceStatus, Match, Player } from '../types'
+import type { AttendanceRecord, AttendanceStatus, Match, Player, PlayerRole } from '../types'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -11,7 +11,7 @@ export async function fetchRemoteData() {
   if (!supabase) throw new Error('Supabase no está configurado')
 
   const [playersResult, matchesResult, attendanceResult] = await Promise.all([
-    supabase.from('players').select('id,name,is_regular').order('name'),
+    supabase.from('players').select('id,name,is_regular,role').order('name'),
     supabase.from('matches').select('id,matchday,kickoff_at,home_team,away_team,venue').order('kickoff_at'),
     supabase.from('attendance').select('id,match_id,player_id,status,created_at,updated_at,players(name)'),
   ])
@@ -23,6 +23,7 @@ export async function fetchRemoteData() {
     id: row.id,
     name: row.name,
     isRegular: row.is_regular,
+    role: row.role,
   }))
   const matches: Match[] = (matchesResult.data ?? []).map((row) => ({
     id: row.id,
@@ -56,13 +57,13 @@ export async function upsertRemoteAttendance(matchId: string, playerId: string, 
   if (error) throw error
 }
 
-export async function createRemotePlayer(name: string): Promise<Player> {
+export async function createRemotePlayer(name: string, role: PlayerRole): Promise<Player> {
   if (!supabase) throw new Error('Supabase no está configurado')
   const { data, error } = await supabase
     .from('players')
-    .insert({ name, is_regular: false })
-    .select('id,name,is_regular')
+    .insert({ name, is_regular: false, role })
+    .select('id,name,is_regular,role')
     .single()
   if (error) throw error
-  return { id: data.id, name: data.name, isRegular: data.is_regular }
+  return { id: data.id, name: data.name, isRegular: data.is_regular, role: data.role }
 }

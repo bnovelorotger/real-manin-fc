@@ -1,17 +1,17 @@
-insert into public.players (id, name, is_regular) values
-  ('00000000-0000-0000-0000-000000000001', 'Alex', true),
-  ('00000000-0000-0000-0000-000000000002', 'Gonzalo', true),
-  ('00000000-0000-0000-0000-000000000003', 'Pablo', true),
-  ('00000000-0000-0000-0000-000000000004', 'Claudio', true),
-  ('00000000-0000-0000-0000-000000000005', 'Jon', true),
-  ('00000000-0000-0000-0000-000000000006', 'Ramón', true),
-  ('00000000-0000-0000-0000-000000000007', 'Berni', true),
-  ('00000000-0000-0000-0000-000000000008', 'Mateo', true),
-  ('00000000-0000-0000-0000-000000000009', 'Marco', true),
-  ('00000000-0000-0000-0000-000000000010', 'Bruno', true),
-  ('00000000-0000-0000-0000-000000000011', 'Neil', true),
-  ('00000000-0000-0000-0000-000000000012', 'Joel', true)
-on conflict (id) do update set name = excluded.name, is_regular = excluded.is_regular;
+insert into public.players (id, name, is_regular, role) values
+  ('00000000-0000-0000-0000-000000000001', 'Alex', true, 'player'),
+  ('00000000-0000-0000-0000-000000000002', 'Gonzalo', true, 'player'),
+  ('00000000-0000-0000-0000-000000000003', 'Pablo', true, 'player'),
+  ('00000000-0000-0000-0000-000000000004', 'Claudio', true, 'player'),
+  ('00000000-0000-0000-0000-000000000005', 'Jon', true, 'player'),
+  ('00000000-0000-0000-0000-000000000006', 'Ramón', true, 'player'),
+  ('00000000-0000-0000-0000-000000000007', 'Berni', true, 'player'),
+  ('00000000-0000-0000-0000-000000000008', 'Mateo', true, 'player'),
+  ('00000000-0000-0000-0000-000000000009', 'Marco', true, 'player'),
+  ('00000000-0000-0000-0000-000000000010', 'Bruno', true, 'player'),
+  ('00000000-0000-0000-0000-000000000011', 'Neil', true, 'player'),
+  ('00000000-0000-0000-0000-000000000012', 'Joel', true, 'player')
+on conflict (id) do update set name = excluded.name, is_regular = excluded.is_regular, role = excluded.role;
 
 insert into public.matches (id, matchday, kickoff_at, home_team, away_team, venue) values
   ('10000000-0000-0000-0000-000000000001', 1, '2026-09-17T22:05:00+02:00', 'CROSTA TEAM', 'Real Manin', 'Escola Pia F7'),

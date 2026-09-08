@@ -9,6 +9,7 @@ export const seedPlayers: Player[] = regularPlayerNames.map((name, index) => ({
   id: `player-${index + 1}`,
   name,
   isRegular: true,
+  role: 'player' as const,
 }))
 
 const matchRows = [

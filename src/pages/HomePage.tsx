@@ -43,7 +43,7 @@ export function HomePage({ player, nextMatch, records, players, savingStatus, on
     <section className="callup-preview">
       <div className="section-heading"><div><span className="eyebrow">CONVOCATORIA</span><h2>¿Quién viene?</h2></div><button className="icon-button" onClick={() => onOpenCallup(nextMatch.id)} aria-label="Ver convocatoria"><ChevronRight size={19} /></button></div>
       <AttendanceSummary records={matchRecords} />
-      <AttendanceList records={matchRecords.slice(0, 4)} players={players} />
+      <AttendanceList records={matchRecords.slice(0, 4)} players={players} grouped={false} />
       {matchRecords.length > 4 && <button className="link-button" onClick={() => onOpenCallup(nextMatch.id)}>Ver convocatoria completa <ChevronRight size={15} /></button>}
     </section>
   </main>

@@ -56,7 +56,7 @@ Edita la lista de jornadas en `supabase/seed.sql` y vuelve a ejecutarla en el SQ
 
 ## Añadir jugadores
 
-Los jugadores habituales iniciales están en `supabase/seed.sql`. Para invitados, usa `Otro` desde la app: se normalizan espacios, se reutiliza un nombre existente sin distinguir mayúsculas y se crea como jugador no habitual.
+Los jugadores habituales iniciales están en `supabase/seed.sql`. Para participantes extra, usa `Otro jugador` u `Otro fan` desde la app: se normalizan espacios, se reutiliza un nombre existente sin distinguir mayúsculas y se crea con su tipo correspondiente. La convocatoria separa ambos grupos.
 
 ## Estructura
 

@@ -4,8 +4,22 @@ create table if not exists public.players (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   is_regular boolean not null default false,
+  role text not null default 'player' check (role in ('player', 'fan')),
   created_at timestamptz not null default now()
 );
+
+alter table public.players add column if not exists role text not null default 'player';
+update public.players set role = 'player' where role is null;
+do $$
+begin
+  if not exists (
+    select 1 from pg_constraint
+    where conname = 'players_role_check' and conrelid = 'public.players'::regclass
+  ) then
+    alter table public.players add constraint players_role_check check (role in ('player', 'fan'));
+  end if;
+end
+$$;
 
 create unique index if not exists players_name_lower_unique on public.players (lower(name));
 

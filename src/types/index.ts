@@ -1,4 +1,5 @@
 export type AttendanceStatus = 'going' | 'maybe' | 'not_going'
+export type PlayerRole = 'player' | 'fan'
 
 export type Page = 'home' | 'calendar' | 'callup'
 
@@ -6,6 +7,7 @@ export interface Player {
   id: string
   name: string
   isRegular: boolean
+  role: PlayerRole
 }
 
 export interface Match {
