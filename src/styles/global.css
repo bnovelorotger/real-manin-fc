@@ -100,6 +100,10 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .attendance-summary--compact .summary-item--going b:after { content: 'V'; font-size: 10px; }.attendance-summary--compact .summary-item--maybe b:after { content: 'D'; font-size: 10px; }.attendance-summary--compact .summary-item--not-going b:after { content: 'N'; font-size: 10px; }
 .attendance-summary--compact .summary-item i { width: 5px; height: 5px; }
 .attendance-list { border-top: 1px solid var(--line); }
+.attendance-group + .attendance-group { margin-top: 20px; }
+.attendance-group h3 { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; letter-spacing: .12em; margin: 0 0 8px; text-transform: uppercase; }
+.attendance-group h3 span { color: var(--ink); font-size: 11px; letter-spacing: 0; }
+.group-empty { color: var(--muted); border: 1px dashed #d7dbd2; border-radius: 12px; padding: 13px; font-size: 11px; margin: 0; }
 .attendance-row { display: flex; align-items: center; gap: 9px; min-height: 43px; border-bottom: 1px solid var(--line); }
 .attendance-row__icon { display: grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; }
 .attendance-row__icon--going { color: var(--green); background: var(--green-soft); }.attendance-row__icon--maybe { color: var(--amber); background: var(--amber-soft); }.attendance-row__icon--not_going { color: var(--red); background: var(--red-soft); }

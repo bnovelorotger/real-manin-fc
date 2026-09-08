@@ -32,10 +32,14 @@ export function AttendanceList({ records, players, grouped = true }: AttendanceL
   const getRole = (record: AttendanceRecord) => players.find((player) => player.id === record.playerId)?.role ?? 'player'
   const playerRecords = ordered.filter((record) => getRole(record) === 'player')
   const fanRecords = ordered.filter((record) => getRole(record) === 'fan')
-  return (
-    <div className="attendance-groups">
-      {playerRecords.length > 0 && <section className="attendance-group"><h3>Jugadores <span>{playerRecords.length}</span></h3><div className="attendance-list">{playerRecords.map(renderRow)}</div></section>}
-      {fanRecords.length > 0 && <section className="attendance-group"><h3>Fans <span>{fanRecords.length}</span></h3><div className="attendance-list">{fanRecords.map(renderRow)}</div></section>}
-    </div>
+  const renderGroup = (title: string, groupRecords: AttendanceRecord[], emptyLabel: string) => (
+    <section className="attendance-group">
+      <h3>{title} <span>{groupRecords.length}</span></h3>
+      {groupRecords.length > 0 ? <div className="attendance-list">{groupRecords.map(renderRow)}</div> : <p className="group-empty">{emptyLabel}</p>}
+    </section>
   )
+  return <div className="attendance-groups">
+    {renderGroup('Jugadores', playerRecords, 'Aún no hay jugadores apuntados.')}
+    {renderGroup('Fans', fanRecords, 'Aún no hay fans apuntados.')}
+  </div>
 }
