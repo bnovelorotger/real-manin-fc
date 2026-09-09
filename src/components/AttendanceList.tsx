@@ -11,7 +11,7 @@ interface AttendanceListProps {
 }
 
 export function AttendanceList({ records, players, grouped = true }: AttendanceListProps) {
-  if (!records.length) return <div className="inline-empty">Aún no hay respuestas. Sé el primero en apuntarte.</div>
+  if (!records.length && !grouped) return <div className="inline-empty">Aún no hay respuestas. Sé el primero en apuntarte.</div>
   const ordered = [...records].sort((a, b) => {
     const order = { going: 0, maybe: 1, not_going: 2 }
     return order[a.status] - order[b.status] || (a.playerName ?? '').localeCompare(b.playerName ?? '', 'es')
@@ -34,7 +34,7 @@ export function AttendanceList({ records, players, grouped = true }: AttendanceL
   const fanRecords = ordered.filter((record) => getRole(record) === 'fan')
   const renderGroup = (title: string, groupRecords: AttendanceRecord[], emptyLabel: string) => (
     <section className="attendance-group">
-      <h3>{title} <span>{groupRecords.length}</span></h3>
+      <h3>{title} <span>({groupRecords.length})</span></h3>
       {groupRecords.length > 0 ? <div className="attendance-list">{groupRecords.map(renderRow)}</div> : <p className="group-empty">{emptyLabel}</p>}
     </section>
   )

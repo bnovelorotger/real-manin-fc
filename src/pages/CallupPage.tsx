@@ -21,13 +21,14 @@ export function CallupPage({ matches, records, players, selectedMatchId }: Callu
   if (!match) return null
   const matchRecords = records.filter((record) => record.matchId === match.id)
   return <main className="page-content">
-    <div className="page-heading"><div><span className="eyebrow">TODOS LOS JUGADORES</span><h1>Convocatoria</h1></div></div>
+    <div className="page-heading"><div><span className="eyebrow">JUGADORES Y FANS</span><h1>Convocatoria</h1></div></div>
     <label className="select-wrap">Selecciona una jornada
       <select value={match.id} onChange={(event) => setMatchId(event.target.value)} aria-label="Selecciona una jornada">
         {matches.map((item) => <option key={item.id} value={item.id}>J{item.matchday} · {item.homeTeam} vs {item.awayTeam}</option>)}
       </select><ChevronDown size={17} />
     </label>
-    <section className="callup-card"><MatchHeader match={match} compact /><AttendanceSummary records={matchRecords} /><AttendanceList records={matchRecords} players={players} /></section>
+    <section className="callup-card callup-card--overview"><MatchHeader match={match} compact /><AttendanceSummary records={matchRecords} /></section>
+    <AttendanceList records={matchRecords} players={players} />
     <p className="callup-hint">La convocatoria se actualiza automáticamente cuando alguien responde.</p>
   </main>
 }
