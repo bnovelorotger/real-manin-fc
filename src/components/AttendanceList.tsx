@@ -8,9 +8,10 @@ interface AttendanceListProps {
   records: AttendanceRecord[]
   players: Player[]
   grouped?: boolean
+  maxPerGroup?: number
 }
 
-export function AttendanceList({ records, players, grouped = true }: AttendanceListProps) {
+export function AttendanceList({ records, players, grouped = true, maxPerGroup }: AttendanceListProps) {
   if (!records.length && !grouped) return <div className="inline-empty">Aún no hay respuestas. Sé el primero en apuntarte.</div>
   const ordered = [...records].sort((a, b) => {
     const order = { going: 0, maybe: 1, not_going: 2 }
@@ -35,7 +36,7 @@ export function AttendanceList({ records, players, grouped = true }: AttendanceL
   const renderGroup = (title: string, groupRecords: AttendanceRecord[], emptyLabel: string) => (
     <section className="attendance-group">
       <h3>{title} <span>({groupRecords.length})</span></h3>
-      {groupRecords.length > 0 ? <div className="attendance-list">{groupRecords.map(renderRow)}</div> : <p className="group-empty">{emptyLabel}</p>}
+      {groupRecords.length > 0 ? <div className="attendance-list">{(maxPerGroup ? groupRecords.slice(0, maxPerGroup) : groupRecords).map(renderRow)}</div> : <p className="group-empty">{emptyLabel}</p>}
     </section>
   )
   return <div className="attendance-groups">

@@ -104,6 +104,8 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .attendance-group h3 { display: flex; align-items: center; gap: 7px; color: var(--ink); font-family: 'Space Grotesk', sans-serif; font-size: 18px; letter-spacing: -.03em; margin: 0 0 10px; }
 .attendance-group h3:after { content: ''; flex: 1; height: 1px; background: #cfd4cc; margin-left: 8px; }
 .attendance-group h3 span { color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 16px; letter-spacing: 0; font-weight: 600; }
+.callup-preview .attendance-group h3 { font-size: 15px; }
+.callup-preview .attendance-group h3 span { font-size: 13px; }
 .group-empty { color: var(--muted); border: 1px dashed #d7dbd2; border-radius: 12px; padding: 13px; font-size: 11px; margin: 0; }
 .attendance-row { display: flex; align-items: center; gap: 9px; min-height: 43px; border-bottom: 1px solid var(--line); }
 .attendance-row__icon { display: grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; }
