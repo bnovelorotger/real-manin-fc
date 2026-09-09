@@ -7,6 +7,21 @@ Aplicación mobile-first para saber cuándo juega Real Manin FC y quién viene a
 
 La app permite seleccionar jugador, consultar el calendario real de la temporada, responder `Voy`, `Dudoso` o `No voy` y ver la convocatoria separada entre **Jugadores** y **Fans**. Las respuestas se comparten entre dispositivos mediante Supabase.
 
+## El prototipo
+
+Real Manin FC nace como un prototipo de herramienta para facilitar la vida diaria de equipos de fútbol base, jugadores y entrenadores. Su objetivo es convertir una tarea normalmente dispersa —preguntar quién viene, recordar horarios y preparar cada partido— en una experiencia sencilla, visual y compartida.
+
+La propuesta no se limita a organizar información: al hacer muy fácil confirmar la asistencia, ayuda a aumentar la participación, reduce la incertidumbre antes de cada jornada y fomenta una cultura de equipo más conectada. Jugadores, entrenadores y fans pueden saber qué ocurre y sentirse parte de la convocatoria.
+
+### Propuesta de valor
+
+- **Para entrenadores:** una visión rápida de la disponibilidad real del grupo para preparar mejor cada partido.
+- **Para jugadores:** una forma clara de responder en segundos y consultar siempre la próxima jornada.
+- **Para el equipo:** más visibilidad, menos mensajes perdidos y mayor implicación colectiva.
+- **Para los fans:** un espacio sencillo para acompañar al equipo y hacer visible su apoyo.
+
+Este proyecto representa una primera versión validable de una solución que podría extenderse a múltiples equipos, entrenamientos, notificaciones, roles de entrenador y estadísticas de participación.
+
 ## Demo
 
 **[Abrir Real Manin FC](https://bnovelorotger.github.io/real-manin-fc/)**
