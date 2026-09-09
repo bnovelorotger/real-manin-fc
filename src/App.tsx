@@ -130,7 +130,7 @@ export default function App() {
   if (showSplash) return <div className="splash"><img src="/real-manin-logo.png" alt="" /><span>REAL MANIN FC</span><small>FÚTBOL 7</small></div>
   if (loading) return <div className="app-shell"><LoadingState /></div>
   if (error) return <div className="app-shell"><div className="error-state"><AlertCircle size={25} /><h1>Algo no ha ido bien</h1><p>{error}</p><button className="primary-button" onClick={() => void loadData()}><RefreshCw size={16} /> Reintentar</button></div></div>
-  if (!player) return <PlayerSelector players={players} onSelect={(name, id) => void choosePlayer(name, id)} />
+  if (!player) return <PlayerSelector players={players} onSelect={(name, id, role) => void choosePlayer(name, id, role)} />
 
   return <div className="app-shell">
     <div className="app-frame">
